@@ -68,7 +68,6 @@ namespace GoRecycler
         /// <summary>
         /// Recycles an object from the object pool
         /// </summary>
-        /// <param name="InstanceId">Instance id of the object</param>
         public void Recycle(GameObject go )
         {
             if (!PooledObjects.Contains(go) && PooledObjects.Count < MaxItems )
