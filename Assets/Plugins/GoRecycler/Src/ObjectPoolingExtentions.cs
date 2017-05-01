@@ -15,10 +15,5 @@ namespace GoRecycler
         {
             return  GoRecyclerUtility.Instance.IsOnPool(go.GetInstanceID());
         }
-
-        public static GoRecycleBin GetRecycleBin(this GameObject go)
-        {
-            return GoRecyclerUtility.Instance.GetRecycleBin(go);
-        }
     }
 }

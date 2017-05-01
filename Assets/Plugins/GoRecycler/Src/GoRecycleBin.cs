@@ -9,28 +9,28 @@ namespace GoRecycler
     {
         #region Fields
 
-        [SerializeField,HideInInspector]
+        [SerializeField]
         private string label;
 
         public string Label { get { return label; } }
 
-        [SerializeField,HideInInspector]
+        [SerializeField]
         private int MaxItems;
 
-        [SerializeField,HideInInspector]
+        [SerializeField]
         private GameObject GoPrefab;
 
-        [SerializeField,HideInInspector]
+        [SerializeField]
         private bool Preload;
 
-        [SerializeField,HideInInspector]
+        [SerializeField]
         private int Preloadcount;
 
-        [SerializeField,HideInInspector]
+        [SerializeField]
         private float PreloadIterationTime = 0.01f;
         
         private Stack<GameObject> PooledObjects = new Stack<GameObject>();
-
+        
         private MonoBehaviour behavior;
 
         #endregion
@@ -68,10 +68,16 @@ namespace GoRecycler
         /// <summary>
         /// Recycles an object from the object pool
         /// </summary>
+        /// <param name="InstanceId">Instance id of the object</param>
         public void Recycle(GameObject go )
         {
             if (!PooledObjects.Contains(go) && PooledObjects.Count < MaxItems )
             {
+                IPooled ip = go.GetComponent<IPooled>();
+                if (ip != null)
+                {
+                    ip.OnRecycle(this);
+                }
                 PooledObjects.Push(go);
                 go.SetActive(false);
                 go.transform.position = Vector3.zero;
@@ -116,12 +122,6 @@ namespace GoRecycler
 
         #region Private API 
         
-        /// <summary>
-        /// Gets an GameObject from the object pool and returns it
-        /// </summary>
-        /// <param name="pos">Position</param>
-        /// <param name="rot">Rotation</param>
-        /// <returns>The GameObject from the pool or null if the pool is empty</returns>
         private GameObject GetAndEnable(Vector3 pos , Quaternion rot )
         {
             if (PooledObjects.Count > 0 )
@@ -149,9 +149,6 @@ namespace GoRecycler
             }
         }
 
-        /// <summary>
-        /// Coroutine to Pre-load the object pool
-        /// </summary>
         private IEnumerator IGenerateGO()
         {
             for (int i = 0; i < Preloadcount; i++)
@@ -162,10 +159,6 @@ namespace GoRecycler
             behavior.StopCoroutine(IGenerateGO());
         }
 
-        /// <summary>
-        /// Registers a GameObject to the object pool
-        /// </summary>
-        /// <returns>The registered GameObject</returns>
         private GameObject RegisterGO()
         {
             if (ObjectCount < MaxItems )

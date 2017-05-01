@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using GoRecycler;
 
 namespace GoRecycler.Editor
 {
@@ -108,10 +111,11 @@ namespace GoRecycler.Editor
                 }
                 GoRecyclerEditorHelper.Endbox();
             }
-            
+
+            GoRecyclerEditorHelper.DrawLine();
+
             if (!Application.isPlaying)
             {
-                GoRecyclerEditorHelper.DrawLine();
                 if (GUILayout.Button("Add new", GUILayout.Height(30f)))
                 {
                     pools.InsertArrayElementAtIndex(pools.arraySize > 0 ? pools.arraySize : 0);

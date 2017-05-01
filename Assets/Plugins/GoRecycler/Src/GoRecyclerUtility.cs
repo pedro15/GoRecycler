@@ -41,20 +41,11 @@ namespace GoRecycler
 
         #endregion
 
-        /// <summary>
-        /// Objects pools array
-        /// </summary>
-        [SerializeField,HideInInspector]
+        [SerializeField]
         private GoRecycleBin[] Pools;
 
-        /// <summary>
-        /// Dictionary to handle the instances asociated to an Object Pool
-        /// </summary>
         private Dictionary<int, int> InstanceidtoPoolid = new Dictionary<int, int>();
 
-        /// <summary>
-        /// Dictionary to handle the labels of the object pools
-        /// </summary>
         private Dictionary<string, int> NameToPoolId = new Dictionary<string, int>();
 
         void Awake()
@@ -99,16 +90,12 @@ namespace GoRecycler
             return val;
         }
 
-        private int IdinstanceToPoolid(int InstanceId)
+        private int IdinstanceToPoolid(int InstanceId )
         {
-            int val = -1;
-            
-            InstanceidtoPoolid.TryGetValue(InstanceId, out val);
-
-            return val;
+            int val;
+            return InstanceidtoPoolid.TryGetValue(InstanceId, out val) ? val : -1;
         }
         
-
         private GameObject GetGameObject(string PoolLabel , Vector3 Position , Quaternion Rotation)
         {
             int xid = LabetoPoolid(PoolLabel.ToLower());
@@ -136,8 +123,8 @@ namespace GoRecycler
         public bool IsOnPool(int instanceid)
         {
             int poolid = IdinstanceToPoolid(instanceid);
-
-            return poolid >= 0 && InstanceidtoPoolid.ContainsKey(instanceid);
+            
+            return poolid >= 0 && poolid < Pools.Length;
         }
 
         public void RecycleGameObject(GameObject obj )
@@ -166,6 +153,5 @@ namespace GoRecycler
                 return null;
             }
         }
-
     }
 }

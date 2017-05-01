@@ -4,9 +4,6 @@ using UnityEngine;
 
 namespace GoRecycler
 {
-    /// <summary>
-    /// Interface to use on Scripts that are in a GameObject associated on a Object Pool
-    /// </summary>
     public interface IPooled
     {
         void OnSpawn(GoRecycleBin RecycleBin);
