@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using GoRecycler.Core;
 
 namespace GoRecycler
 {
@@ -151,7 +150,6 @@ namespace GoRecycler
         {
             if (!obj)
             {
-                Debug.Log("Null gameObject");
                 return;
             }
 
@@ -159,11 +157,9 @@ namespace GoRecycler
 
             int poolid = IdinstanceToPoolid(_instanceid);
 
-            Debug.Log(poolid);
 
             if (poolid >= 0 )
             {
-                Debug.Log("ok - pool");
                 Pools[poolid].Recycle(obj);
             }
         }

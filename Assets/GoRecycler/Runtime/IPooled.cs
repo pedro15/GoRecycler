@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace GoRecycler.Core
+
+namespace GoRecycler
 {
     public interface IPooled
     {

@@ -1,5 +1,4 @@
 using UnityEngine;
-using GoRecycler.Core;
 
 namespace GoRecycler
 {

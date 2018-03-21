@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GoRecycler.Core
+namespace GoRecycler
 {
     [System.Serializable]
     public class GoRecycleBin : System.Object
@@ -85,14 +85,9 @@ namespace GoRecycler.Core
                 {
                     ip.OnRecycle(this);
                 }
-                Debug.Log(go);
                 go.SetActive(false);
                 go.transform.position = Vector3.zero;
                 PooledObjects.Push(go);
-                Debug.Log("ok !");
-            }else
-            {
-                Debug.Log("Woops");
             }
         }
         

@@ -20,10 +20,12 @@ namespace GoRecyclerEditor
 
         void RemoveButton(int index)
         {
+            EditorGUI.BeginDisabledGroup(EditorApplication.isPlaying);
             if (GUILayout.Button(new GUIContent("X")))
             {
                 pools.DeleteArrayElementAtIndex(index);
             }
+            EditorGUI.EndDisabledGroup();
         }
 
         public override void OnInspectorGUI()
