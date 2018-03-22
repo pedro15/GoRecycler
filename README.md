@@ -76,3 +76,5 @@ namespace ExampleNamespace
 // RecycleBin is the object pool class that handles the Pool to a Prefab
 RecycleBin recyclebin = RecyclerManager.GetRecycleBin(gameObject);
 ```
+
+## [Demo Video](https://youtu.be/EF20Nvq1U9o)
