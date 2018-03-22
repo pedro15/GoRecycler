@@ -6,7 +6,7 @@ Object Pool Manager for Unity3d Game Engine.
 ## Getting started
 
 Add GoRecyclerManager to your scene:
-* Create> Empy GameObject > AddComponent: GoRecyclerManager
+* Create > Empty GameObject > AddComponent > RecyclerManager
 
 ### Get from Object Pool
 
