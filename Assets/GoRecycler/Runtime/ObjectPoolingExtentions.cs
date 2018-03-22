@@ -12,24 +12,15 @@ namespace GoRecycler
         /// </summary>
         public static void Recycle(this GameObject go)
         {
-            GoRecyclerManager.Instance.RecycleGameObject(go);
+            RecyclerManager.Instance.RecycleGameObject(go);
         }
         
         /// <summary>
         /// Is the gameObject asigned on an Object Pool ?
         /// </summary>
-        public static bool IsInObjectPool( this GameObject go)
+        public static bool IsOnPool( this GameObject go)
         {
-            return GoRecyclerManager.Instance.IsOnPool(go.GetInstanceID());
-        }
-
-        /// <summary>
-        /// Returns the RecycleBin instance for the gameObject
-        /// </summary>
-        /// <returns>RcycleBin instance or null if gameObject is not asigned to any object pool</returns>
-        public static GoRecycleBin GetRecycleBin(this GameObject go)
-        {
-            return GoRecyclerManager.Instance.GetRecycleBin(go);
+            return RecyclerManager.Instance.IsOnPool(go.GetInstanceID());
         }
     }
 }

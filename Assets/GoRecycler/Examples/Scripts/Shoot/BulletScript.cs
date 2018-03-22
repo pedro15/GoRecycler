@@ -15,8 +15,8 @@ namespace GoRecyclerExample
         {
             yield return new WaitForSeconds(TimeOut);
 
-            GoRecyclerManager.Spawn(ExplosionLabel, transform.position, Quaternion.identity);
-
+            RecyclerManager.Spawn(ExplosionLabel, transform.position, Quaternion.identity);
+            
             gameObject.Recycle();
 
             started = false;

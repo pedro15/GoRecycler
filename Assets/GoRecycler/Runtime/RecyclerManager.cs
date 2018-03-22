@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace GoRecycler
 {
-    [AddComponentMenu("GoRecycler/GoRecycler Manager")]
-    public class GoRecyclerManager : MonoBehaviour
+    [AddComponentMenu("GoRecycler/Recycler Manager")]
+    public class RecyclerManager : MonoBehaviour
     {
         #region Singleton  
 
-        private static GoRecyclerManager _instance;
+        private static RecyclerManager _instance;
         
-        public static GoRecyclerManager Instance
+        public static RecyclerManager Instance
         {
             get
             {
                 if (!_instance)
                 {
-                    _instance = FindObjectOfType<GoRecyclerManager>();
+                    _instance = FindObjectOfType<RecyclerManager>();
                 }
                 if (!_instance)
                 {
-                    Debug.LogError( "No "  + typeof(GoRecyclerManager).Name + " instance found in the scene");
+                    Debug.LogError( "No "  + typeof(RecyclerManager).Name + " instance found in the scene");
                 }
                 return _instance;
             }
@@ -29,7 +29,7 @@ namespace GoRecycler
         #endregion
 
         [SerializeField]
-        private GoRecycleBin[] Pools;
+        private RecycleBin[] Pools;
 
         private Dictionary<int, int> InstanceidToPoolid = new Dictionary<int, int>();
 
@@ -50,13 +50,13 @@ namespace GoRecycler
                     }
                     else
                     {
-                        Debug.LogWarning("[" + typeof(GoRecyclerManager).Name +
+                        Debug.LogWarning("[" + typeof(RecyclerManager).Name +
                         "] Duplicated label detected (" + Pools[i].Label
                         + "). Please provide diferent label names in your pools, duplicated pool will be ignored.");
                     }
                 }else
                 {
-                    Debug.LogWarning("[" + typeof(GoRecyclerManager).Name +
+                    Debug.LogWarning("[" + typeof(RecyclerManager).Name +
                       "] Empty label detected, please specify a label for your Pools");
                 }
             }
@@ -129,6 +129,22 @@ namespace GoRecycler
         {
             return Instance.GetPrefab(Label, Position, Rotation);
         }
+
+        /// <summary>
+        /// Returns the RecycleBin asigned to the gameObject
+        /// </summary>
+        /// <param name="obj">GameObject</param>
+        /// <returns>RecycleBin instance or null if no RecycleBin asigned</returns>
+        public static RecycleBin GetRecycleBin (GameObject obj)
+        {
+            int index;
+            if(Instance.InstanceidToPoolid.TryGetValue(obj.GetInstanceID(), out index))
+            {
+                if (index >= 0)
+                    return Instance.Pools[index];
+            }
+            return null;
+        }
         
         /// <summary>
         /// Is the instance id asigned to an Object Pool ?
@@ -164,29 +180,5 @@ namespace GoRecycler
             }
         }
         
-        /// <summary>
-        /// Gets the RecycleBin Assigned from the GameObject
-        /// </summary>
-        /// <param name="obj">GameObject</param>
-        /// <returns>RecycleBin instance</returns>
-        public GoRecycleBin GetRecycleBin (GameObject obj)
-        {
-            if (!obj) return null;
-
-            int _instanceid = obj.GetInstanceID();
-
-            int poolid = IdinstanceToPoolid(_instanceid);
-
-            if (poolid >= 0)
-            {
-               return Pools[poolid];
-            }else
-            {
-                return null;
-            }
-        }
-
-        
-
     }
 }

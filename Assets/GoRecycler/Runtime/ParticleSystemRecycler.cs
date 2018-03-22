@@ -40,7 +40,7 @@ namespace GoRecycler
             StopCoroutine(KillParticles());
         }
 
-        public void OnRecycle(GoRecycleBin RecycleBin)
+        public void OnRecycle()
         {
             if (particles != null)
             {
@@ -50,7 +50,7 @@ namespace GoRecycler
             }
         }
 
-        public void OnSpawn(GoRecycleBin RecycleBin)
+        public void OnSpawn()
         {
             if (AutoPlay && particles != null)
             {

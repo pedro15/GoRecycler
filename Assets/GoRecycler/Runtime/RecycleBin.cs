@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GoRecycler
 {
     [System.Serializable]
-    public class GoRecycleBin : System.Object
+    public class RecycleBin : System.Object
     {
         #region Fields
         
@@ -83,7 +83,7 @@ namespace GoRecycler
                 IPooled ip = go.GetComponent<IPooled>();
                 if (ip != null)
                 {
-                    ip.OnRecycle(this);
+                    ip.OnRecycle();
                 }
                 go.SetActive(false);
                 go.transform.position = Vector3.zero;
@@ -163,7 +163,7 @@ namespace GoRecycler
                 IPooled ip = g.GetComponent<IPooled>();
                 if (ip != null)
                 {
-                    ip.OnSpawn(this);
+                    ip.OnSpawn();
                 }
                 return g;
             }

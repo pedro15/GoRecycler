@@ -4,8 +4,8 @@ using GoRecycler;
 
 namespace GoRecyclerEditor
 {
-    [CustomEditor(typeof(GoRecyclerManager))]
-    internal class GoRecyclerManagerEditor : Editor
+    [CustomEditor(typeof(RecyclerManager))]
+    internal class RecyclerManagerEditor : Editor
     {
         /// <summary>
         /// Recyclebin List

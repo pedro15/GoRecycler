@@ -14,9 +14,11 @@ namespace GoRecyclerExample
         public float LookSpeed;
 
         public float ShootForce;
+        
 
         private void Update()
         {
+            
             LookAt();
             Shoot();
         }
@@ -50,7 +52,9 @@ namespace GoRecyclerExample
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                GameObject bullet = GoRecyclerManager.Spawn(BulletLabel, ShootPoint.position, ShootPoint.rotation);
+                GameObject bullet = RecyclerManager.Spawn(BulletLabel, ShootPoint.position, ShootPoint.rotation);
+
+                
 
                 if (bullet != null)
                 {

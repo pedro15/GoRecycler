@@ -20,7 +20,7 @@ namespace GoRecyclerExample
             {
                 int i = Random.Range(0, TrafficPoints.Length);
                 if (i != lastindex)
-                    GoRecyclerManager.Spawn(PoolLabels[Random.Range(0,PoolLabels.Length)], TrafficPoints[i].position, TrafficPoints[i].rotation);
+                    RecyclerManager.Spawn(PoolLabels[Random.Range(0,PoolLabels.Length)], TrafficPoints[i].position, TrafficPoints[i].rotation);
                 lastindex = i;
                 yield return new WaitForSeconds(Time.deltaTime + SpawnTime);
             }
